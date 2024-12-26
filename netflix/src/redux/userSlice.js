@@ -7,7 +7,7 @@ reducers: {
 addUser : (state, action) => {
     return action.payload;
 },
-removeUser : () => {
+removeUser : (state, action) => {
     return null;
   },
  },

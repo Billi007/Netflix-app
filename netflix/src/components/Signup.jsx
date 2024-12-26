@@ -3,44 +3,44 @@ import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import signupSchema from '../schema/singup'
 import { auth } from '../utils/Firebase'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import { useState } from 'react'
 import Header from "./Header";
 import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState(null);
   const { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
       email: "",
       password: "",
-      fullName: "",
+      fullname: "",
     },
     resolver: yupResolver(signupSchema),
   });
 
   const onSubmit = (data) => {
-    const { email, password, fullName } = data;
-    console.log(data)
+    const { email, password, fullname } = data;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         updateProfile(user, {
-          displayName: fullName, photoURL: "https://example.com/jane-q-user/profile.jpg"
+          displayName: fullname, 
+          photoURL: "https://example.com/jane-q-user/profile.jpg"
         }).then(() => {
           navigate('/browse');
           console.log("User created:", user)
         }).catch((error) => {
           setErrorMessages(error.message)
         });
-      })
+      })   
+    
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessages(errorMessage + "-" + errorCode)
       });
-    
   }
 
           

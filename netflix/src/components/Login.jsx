@@ -1,12 +1,13 @@
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
+import { FcGoogle } from "react-icons/fc";
 import signInSchema from '../schema/signin'
 import {signInWithEmailAndPassword } from 'firebase/auth'
 import { useState } from 'react'
 import { auth } from '../utils/Firebase'
 import Header from './Header'
-import {signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const navigate = useNavigate()
@@ -20,7 +21,6 @@ const Login = () => {
     resolver: yupResolver(signInSchema),
   });
   
-  
   const handleGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
@@ -28,18 +28,21 @@ const Login = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
+      navigate('/browse');
+      console.log("user logged in with google auth", user);
     }).catch((error) => {
+      console.log(error.message)
        setErrorMessages(error.message)
     });
   }
 
 const onSubmit = (data) => {
-const { email, password } = data;
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+  const { email, password } = data;
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => { 
     const user = userCredential.user;
     navigate('/browse');
-    console.log("User signed in:", user)
+    console.log("sign in successfully", user)
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -47,6 +50,7 @@ signInWithEmailAndPassword(auth, email, password)
     setErrorMessages(errorMessage + "-" + errorCode)
     console.log(errorMessage + "-" + errorCode)
   });
+
   }
   
   return (
@@ -99,8 +103,11 @@ signInWithEmailAndPassword(auth, email, password)
         New to Netflix? 
        <Link to={'/signup'} className="font-medium"> Sign up now.</Link></p>
 
-       <button onClick={handleGoogle}>
-        Google
+       <button 
+       className='text-2xl'
+       onClick={handleGoogle}
+      >
+       <FcGoogle />
        </button>
       </form>
       </div>

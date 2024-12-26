@@ -1,27 +1,44 @@
 import logo from '../../public/netflix_logo.png'
 import netflixAvatar from '../../public/Netflix-avatar.png'
-import { GoTriangleDown } from "react-icons/go";
-import { useState } from 'react';
 import { signOut } from "firebase/auth";
 import {auth} from '../utils/Firebase'
 import {useNavigate} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import {onAuthStateChanged } from "firebase/auth";
+import {useDispatch} from 'react-redux'
+import {addUser, removeUser} from '../redux/userSlice' 
 
 const Header = () => {
   const navigate = useNavigate();
-  const [showOptions, setShowOptions] = useState(false);
-  
-  const toggleOptions = () => {
-    setShowOptions((prev) => !prev);
-  };
-  
+  const user = useSelector(store => store.user);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      const {uid, email, displayName, photoURL} = user;
+      if (user) {
+        dispatch(addUser({uid, email, displayName, photoURL}))
+        navigate("/browse");
+      } else {
+        // User is signed out
+       dispatch(removeUser())
+       navigate('/')
+      }
+    });
+      },[])
+    
+
+
   const handleSignOut = () => {
-  signOut(auth).then(() => {
-  navigate('/login');
-  console.log("Sign out successfully")
-  }).catch((error) => {
-   navigate('/error')
-   console.log(error)
-  });
+    signOut(auth)
+    .then(() => {
+    navigate("/");
+ 
+    })
+    .catch(() => {
+      navigate("/error");
+    });
  }
   return (
    <>
@@ -29,28 +46,31 @@ const Header = () => {
     
       <img 
       className='w-44'
-      src={logo} alt="logo" />
-
-   
-       <div className='flex gap-2'>
+      src={logo} alt="logo" />     
+     
+        <div className='userbox cursor-pointer text-white'>
+      {user ?
+       (
+        <div>
        <img 
        className='w-8 h-8'
        src={netflixAvatar} 
        alt="avatar" />
-     
-        <div className='userbox cursor-pointer text-white'>
-      <GoTriangleDown onClick={toggleOptions} className='mt-2 '/>
-      {showOptions ? (<div className=' w-20 text-xs bg-black rounded-sm p-2 transition duration-300 ease-in-out'>
-       <ul>
-         <button onClick={handleSignOut}>Sign Out</button>
-         </ul>
-      </div>) : 
+
+        <img 
+        className='w-14 h-14 rounded-full'
+        src={user.photoURL} 
+        alt="" />
+
+         <button onClick={handleSignOut}>Logout</button>
+        </div>
+
+      ) : 
       ''}
         </div>
        </div>
     
          
-    </div>
    </>
   )
 }
