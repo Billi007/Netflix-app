@@ -6,10 +6,12 @@ import { auth } from '../utils/Firebase'
 import { createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import { useState } from 'react'
 import Header from "./Header";
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../redux/userSlice'
+import {netflixBgImage} from '../utils/Constants'
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [errorMessages, setErrorMessages] = useState(null);
   const { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
@@ -23,15 +25,18 @@ const Signup = () => {
   const onSubmit = (data) => {
     const { email, password, fullname } = data;
     createUserWithEmailAndPassword(auth, email, password)
+
       .then((userCredential) => {
         const user = userCredential.user;
         updateProfile(user, {
           displayName: fullname, 
-          photoURL: "https://example.com/jane-q-user/profile.jpg"
-        }).then(() => {
-          navigate('/browse');
+        })
+        .then(() => {
+          const {uid, email, displayName} = auth.currentUser;
+          dispatch(addUser({ uid ,email, displayName}))
           console.log("User created:", user)
-        }).catch((error) => {
+        })
+        .catch((error) => {
           setErrorMessages(error.message)
         });
       })   
@@ -51,7 +56,7 @@ const Signup = () => {
       <div className="absolute w-full">
       <img 
       className='relative h-screen w-full bg-cover bg-center'
-      src="https://assets.nflxext.com/ffe/siteui/vlv3/729ce5c2-d831-436a-8c9d-f38fea0b99b3/web/IN-en-20241209-TRIFECTA-perspective_4aef76eb-7d5b-4be0-93c0-5f67320fd878_small.jpg" 
+      src={netflixBgImage}
       alt="img" />
        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>
@@ -99,7 +104,7 @@ const Signup = () => {
       <p 
       className="text-sm font-thin py-4 px-3 cursor-pointer">
       Already a member? 
-     <Link to={'/login'} className="font-medium"> Sign in.</Link></p>
+     <Link to={'/'} className="font-medium"> Sign in.</Link></p>
     </form>
     </div>
 

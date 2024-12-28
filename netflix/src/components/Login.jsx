@@ -8,9 +8,10 @@ import { useState } from 'react'
 import { auth } from '../utils/Firebase'
 import Header from './Header'
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import { useNavigate } from 'react-router-dom'
+import {netflixBgImage} from '../utils/Constants'
+
+
 const Login = () => {
-  const navigate = useNavigate()
   const [errorMessages, setErrorMessages] = useState(null);
   
   const { handleSubmit, register, formState: { errors } } = useForm({
@@ -24,24 +25,25 @@ const Login = () => {
   const handleGoogle = () => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(auth, provider)
+
     .then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
-      navigate('/browse');
       console.log("user logged in with google auth", user);
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log(error.message)
        setErrorMessages(error.message)
     });
   }
 
-const onSubmit = (data) => {
+  const onSubmit = (data) => {
   const { email, password } = data;
   signInWithEmailAndPassword(auth, email, password)
+  
   .then((userCredential) => { 
     const user = userCredential.user;
-    navigate('/browse');
     console.log("sign in successfully", user)
   })
   .catch((error) => {
@@ -59,7 +61,7 @@ const onSubmit = (data) => {
       <div className="absolute w-full">
       <img 
       className='relative h-screen w-full bg-cover bg-center'
-      src="https://assets.nflxext.com/ffe/siteui/vlv3/729ce5c2-d831-436a-8c9d-f38fea0b99b3/web/IN-en-20241209-TRIFECTA-perspective_4aef76eb-7d5b-4be0-93c0-5f67320fd878_small.jpg" 
+      src={netflixBgImage}
       alt="img" />
        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>

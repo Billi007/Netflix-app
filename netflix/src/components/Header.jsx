@@ -4,42 +4,54 @@ import { signOut } from "firebase/auth";
 import {auth} from '../utils/Firebase'
 import {useNavigate} from 'react-router-dom'
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect,} from 'react';
 import {onAuthStateChanged } from "firebase/auth";
 import {useDispatch} from 'react-redux'
 import {addUser, removeUser} from '../redux/userSlice' 
 
 const Header = () => {
+ // const [showAccount, setShowAccount] = useState(false)
   const navigate = useNavigate();
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      const {uid, email, displayName, photoURL} = user;
+  // const toggleAcount = () => {
+  //   setShowAccount(!showAccount)
+  // }
+
+  
+    const handleSignOut = () => {
+      signOut(auth)
+      .then(() => {})
+      .catch(() => {
+        navigate("/error");
+      });
+   };
+
+
+   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(addUser({uid, email, displayName, photoURL}))
+        const { uid, email, displayName, } = user;
+        dispatch(
+          addUser({
+            uid,
+            email,
+            displayName,
+          })
+        );
         navigate("/browse");
       } else {
-        // User is signed out
-       dispatch(removeUser())
-       navigate('/')
+        dispatch(removeUser());
+        navigate("/");
       }
     });
-      },[])
+
+    //unsubscribe when component will unmount
+    return () => unsubscribe();
+  }, []);
     
 
-
-  const handleSignOut = () => {
-    signOut(auth)
-    .then(() => {
-    navigate("/");
- 
-    })
-    .catch(() => {
-      navigate("/error");
-    });
- }
   return (
    <>
     <div className='flex items-center justify-between p-2 absolute w-full px-12 py-2 bg-gradient-to-b from-black z-10'>
@@ -51,16 +63,15 @@ const Header = () => {
         <div className='userbox cursor-pointer text-white'>
       {user ?
        (
-        <div>
+        <div className='flex items-center gap-4'>
        <img 
        className='w-8 h-8'
        src={netflixAvatar} 
        alt="avatar" />
 
-        <img 
-        className='w-14 h-14 rounded-full'
-        src={user.photoURL} 
-        alt="" />
+    
+          <button className='font-semibold text-lg'>Account</button>
+      
 
          <button onClick={handleSignOut}>Logout</button>
         </div>

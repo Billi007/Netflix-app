@@ -1,12 +1,11 @@
-import Signup from "./Signup";
-
+import Login from './Login'
 import Header from "./Header";
 const Body = () => {
 
   return (
    <>
     <Header/>
-    <Signup/>
+    <Login/>
 
    </>
   )
