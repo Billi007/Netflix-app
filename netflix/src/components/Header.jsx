@@ -54,32 +54,28 @@ const Header = () => {
 
   return (
    <>
-    <div className='flex items-center justify-between p-2 absolute w-full px-12 py-2 bg-gradient-to-b from-black z-10'>
-    
+    <div className='top-0 sticky z-50'>
+    <div className='absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between'>
       <img 
-      className='w-44'
-      src={logo} alt="logo" />     
+     className="w-40 mx-auto md:mx-0"
+      src={logo} 
+      alt="logo" />     
      
-        <div className='userbox cursor-pointer text-white'>
-      {user ?
-       (
-        <div className='flex items-center gap-4'>
+      <div className='userbox cursor-pointer text-white px-8'>
+      {user ? 
+      (<div className='flex items-center gap-4 mt-6'>
        <img 
        className='w-8 h-8'
        src={netflixAvatar} 
        alt="avatar" />
 
-    
-          <button className='font-semibold text-lg'>Account</button>
-      
-
+        <button className='font-semibold text-lg'>Account</button>
          <button onClick={handleSignOut}>Logout</button>
-        </div>
-
-      ) : 
-      ''}
+        </div>) 
+        : ''}
         </div>
        </div>
+    </div>
     
          
    </>

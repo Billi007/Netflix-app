@@ -2,31 +2,14 @@ export const netflixBgImage = "https://assets.nflxext.com/ffe/siteui/vlv3/729ce5
 export const Api_Key = "ffda11b17643bd75525ef8be7e4411ea"
 
 // export const Access_Token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRhMTFiMTc2NDNiZDc1NTI1ZWY4YmU3ZTQ0MTFlYSIsIm5iZiI6MTczNTMxMTU2My4yNzEwMDAxLCJzdWIiOiI2NzZlYzBjYmUyOTc2YmE3NWI5MmJhMWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.K8caXaxB4eMV_3r3oucyEz5unULAgkpBva_BsAy23RM"
-// export const API_OPTIONS = {
-//     method: 'GET',
-//     headers: {
-//       accept: 'application/json',
-//       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRhMTFiMTc2NDNiZDc1NTI1ZWY4YmU3ZTQ0MTFlYSIsIm5iZiI6MTczNTMxMTU2My4yNzEwMDAxLCJzdWIiOiI2NzZlYzBjYmUyOTc2YmE3NWI5MmJhMWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.K8caXaxB4eMV_3r3oucyEz5unULAgkpBva_BsAy23RM'
-//     }
-//   };
-  
-//  const fetch = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1'
-   
- 
 
 
-export const API_OPTIONS = {
-
-  method: 'GET',
-  
-  headers: {
-  
-  accept: 'application/json',
-  
-  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZmRhMTFiMTc2NDNiZDc1NTI1ZWY4YmU3ZTQ0MTFlYSIsIm5iZiI6MTczNTMxMTU2My4yNzEwMDAxLCJzdWIiOiI2NzZlYzBjYmUyOTc2YmE3NWI5MmJhMWMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.K8caXaxB4eMV_3r3oucyEz5unULAgkpBva_BsAy23RM'
-  
-  }
-  
+export const options = {
+	method: 'GET',
+	headers: {
+	  accept: 'application/json',
+	  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5MTNkZTBmNTBkN2JmMTAyZWEwMTE3YjAxMmRiNWFkOSIsIm5iZiI6MTczNjYxMjAwMi45NDQsInN1YiI6IjY3ODI5OGEyMmIyOWE5MThkMDRlYjAxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bItQ4wQCI0NXix9ll59dW6Al1BB7wyCcL4BLsVxWlS8'
+	}
   };
   
-  
+export const IMG_CDN = 'https://image.tmdb.org/t/p/w500';
