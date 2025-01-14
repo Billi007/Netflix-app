@@ -13,3 +13,16 @@ export const options = {
   };
   
 export const IMG_CDN = 'https://image.tmdb.org/t/p/w500';
+
+export const supportedLanguage = [
+  {identifier: 'en', name: "English"},
+  {identifier: 'fr', name: "French"},
+  {identifier: 'ru', name: "Russia"},
+  {identifier: 'ja', name: "Japanese"},
+  {identifier: 'chi', name: "Chinese"},
+  {identifier: 'ko', name: "Korean"},
+  {identifier: 'ar', name: "Arabic"},
+  {identifier: 'hi', name: "Hindi"},
+  {identifier: 'es', name: "Spanish"},
+  {identifier: 'ur', name: "Urdu"},
+] 

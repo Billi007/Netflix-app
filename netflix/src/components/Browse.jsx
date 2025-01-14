@@ -6,8 +6,12 @@ import useGetPopularMovies from '../hooks/useGetPopularMovies';
 import useGetUpcomingMovies from '../hooks/useGetUpcomingMovies'
 import useGetTrendingMovies from '../hooks/useGetTrendingMovies';
 import useGetLatestMovies from '../hooks/useGetLatestMovies';
+import GPTSearch from './GPTSearch';
+import { useSelector } from 'react-redux';
 
 const Browse = () => {
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
+
   useNowPlayingMovies();
   useGetPopularMovies(); 
   useGetUpcomingMovies(); 
@@ -16,17 +20,15 @@ const Browse = () => {
 
   return (
    <>
-   <div className='bg-black'>
+  <div className='bg-black'>
   <Header/>
-  <MainContainer/>
-  {/* videoBackground
-  VideoTitle */}
+  {showGptSearch ? 
+  (<GPTSearch/>) : (
+  <>
+  <MainContainer/> 
   <SecondartContainer/>
-  {/* 
-  Movie List * n
-  Movie Cards * n
-   /}
-
+  </>
+  )}
 
 
 
@@ -46,10 +48,7 @@ const Browse = () => {
       <h1 className=' text-5xl font-extrabold w-28'> Stranger Things</h1>
        <h1 className='w-64 text-sm'>DISCLAIMER: This Video is made for informational and educational purposes only. We do not own or affiliate with Netflix and its subsidiaries in any form. Copyright Disclaimer Under section 107 of the Copyright Act 1976, allowance 
           is made for “fair use” of this video for educational purposes.
-       </h1>
-        
-       
-           
+       </h1>      
          
     </div>
   </header> */}
