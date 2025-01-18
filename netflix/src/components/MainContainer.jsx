@@ -12,10 +12,12 @@ const MainContainer = () => {
   //console.log(mainMovieBackground)
 
   return (
-    <div>
+    
+   <>
      <VideoTitle title={original_title} overview={overview} />
      <VideoBackground movieId={id}/>
-    </div>
+    
+   </>
   )
 }
 

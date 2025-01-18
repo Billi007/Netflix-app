@@ -1,7 +1,12 @@
 import {IMG_CDN} from '../utils/Constants'
+
+
 const MovieCard = ({posterPath}) => {
+
   return (
-    <div className='w-[150px]'>
+    <>
+    <div
+    className='w-[150px] cursor-pointer'>
     <img 
     className='w-36 h-48'
     src={IMG_CDN + posterPath}
@@ -9,6 +14,7 @@ const MovieCard = ({posterPath}) => {
     alt="Movie Card" 
     />
     </div>
+    </>
   )
 }
 

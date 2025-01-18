@@ -4,7 +4,7 @@ import { PiListPlus } from "react-icons/pi";
 const VideoTitle = ({title, overview}) => {
   return (
     <>
-    <div className='w-screen aspect-video pt-[20%] px-12 absolute text-white bg-gradient-to-r from-black'>
+    <div className='w-screen aspect-video pt-[20%] px-20 absolute text-white bg-gradient-to-r from-black'>
     <h1 className='text-[45px] font-bold'>{title} </h1>
     <p className='py-6 text-sm w-80'>{overview}</p>
     

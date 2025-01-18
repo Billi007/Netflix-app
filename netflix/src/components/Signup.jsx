@@ -8,7 +8,9 @@ import { useState } from 'react'
 import Header from "./Header";
 import { useDispatch } from 'react-redux'
 import { addUser } from '../redux/userSlice'
+import Footer from './Footer'
 import {netflixBgImage} from '../utils/Constants'
+import {toast} from 'react-toastify'
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -34,6 +36,7 @@ const Signup = () => {
         .then(() => {
           const {uid, email, displayName} = auth.currentUser;
           dispatch(addUser({ uid ,email, displayName}))
+          toast.success('User added successfully')
           console.log("User created:", user)
         })
         .catch((error) => {
@@ -45,26 +48,29 @@ const Signup = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessages(errorMessage + "-" + errorCode)
+        toast.error(errorMessage)
       });
   }
 
           
 
   return (
-    <div>
+   <>
+    <div className='bg-black'>
    <Header/>
-      <div className="absolute w-full">
+      <div className="absolute w-full ">
       <img 
       className='relative h-screen w-full bg-cover bg-center'
       src={netflixBgImage}
       alt="img" />
        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>
-    <div className="flex justify-center items-center">
-    <form onSubmit={handleSubmit(onSubmit)} className="relative w-[350px] py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
+    <div className="flex justify-center items-center ">
+    <form onSubmit={handleSubmit(onSubmit)} className="relative w-[350px] mb-24 py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
 
     <h1 className="font-bold text-3xl py-4">Sign Up</h1>
 
+    <div className='space-y-7'>
     <input 
     {...register("fullname")}
     className="py-3 px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#858585] "
@@ -104,11 +110,15 @@ const Signup = () => {
       <p 
       className="text-sm font-thin py-4 px-3 cursor-pointer">
       Already a member? 
-     <Link to={'/'} className="font-medium"> Sign in.</Link></p>
+     <Link to={'/signin'} className="font-medium"> Sign in.</Link></p>
+    </div>
     </form>
     </div>
-
+  <Footer/>
   </div>
+   </>
+  
+
   )
 }
 

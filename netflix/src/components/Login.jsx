@@ -9,6 +9,7 @@ import { auth } from '../utils/Firebase'
 import Header from './Header'
 import {signInWithPopup, GoogleAuthProvider} from "firebase/auth";
 import {netflixBgImage} from '../utils/Constants'
+import {toast} from 'react-toastify'
 
 
 const Login = () => {
@@ -30,11 +31,12 @@ const Login = () => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
       const user = result.user;
+      toast.success("Logged in successfully")
       console.log("user logged in with google auth", user);
     })
     .catch((error) => {
       console.log(error.message)
-       setErrorMessages(error.message)
+      setErrorMessages(error.message)
     });
   }
 
@@ -51,6 +53,7 @@ const Login = () => {
     const errorMessage = error.message;
     setErrorMessages(errorMessage + "-" + errorCode)
     console.log(errorMessage + "-" + errorCode)
+    toast.error(errorMessage)
   });
 
   }
@@ -67,11 +70,12 @@ const Login = () => {
       </div>
       <div className="flex justify-center items-center">
 
-      <div className='space-y-4'>
-      <form onSubmit={handleSubmit(onSubmit)} className="relative w-[350px] py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
+      <div>
+      <form onSubmit={handleSubmit(onSubmit)} className="relative mb-28 w-[350px] py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
       <h1 className="font-bold text-3xl py-4">Sign In</h1>
 
-      <input 
+       <div className='space-y-7'>
+        <input 
       {...register("email")}
       className="py-3 px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#858585] "
       placeholder="Email Address"
@@ -99,18 +103,17 @@ const Login = () => {
       <button 
       className="py-2 m-2 bg-[#c11119] hover:bg-[#c1111ae5] w-full rounded-sm" 
       type="submit">
-        Sign in</button>
-        <p 
-        className="text-sm font-thin py-4 px-3 cursor-pointer">
-        New to Netflix? 
+        Sign in
+        </button>
+        <p className="text-sm font-thin py-4 px-3 cursor-pointer">New to Netflix? 
        <Link to={'/signup'} className="font-medium"> Sign up now.</Link></p>
 
        <button 
-       className='text-2xl'
-       onClick={handleGoogle}
-      >
+       className='text-3xl'
+       onClick={handleGoogle}>
        <FcGoogle />
        </button>
+</div>
       </form>
       </div>
       </div>
