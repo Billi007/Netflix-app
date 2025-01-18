@@ -1,10 +1,9 @@
 export const netflixBgImage = "https://assets.nflxext.com/ffe/siteui/vlv3/729ce5c2-d831-436a-8c9d-f38fea0b99b3/web/IN-en-20241209-TRIFECTA-perspective_4aef76eb-7d5b-4be0-93c0-5f67320fd878_small.jpg" 
-
 export const options = {
 	method: 'GET',
 	headers: {
 	  accept: 'application/json',
-	  Authorization: 'Bearer' + process.env.REACT_APP_TMDB_KEY
+	  Authorization: 'Bearer ' + import.meta.env.REACT_APP_TMDB_KEY,
 	}
   };
   
@@ -24,5 +23,4 @@ export const supportedLanguage = [
 ] 
 
 
-
-export const GEMINI_KEY= process.env.REACT_APP_GEMINI_KEY
+//export const GEMINI_KEY= import.meta.env.process.REACT_APP_GEMINI_KEY
