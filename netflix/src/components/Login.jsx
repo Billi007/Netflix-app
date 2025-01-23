@@ -71,41 +71,41 @@ const Login = () => {
       <div className="flex justify-center items-center">
 
       <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="relative mb-28 w-[350px] py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
-      <h1 className="font-bold text-3xl py-4">Sign In</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="relative mb-28 w-64 md:w-[350px] py-10 px-9 bg-black bg-opacity-85 top-32 text-[#ffffff] ">
+      <h1 className="font-bold text-2xl md:text-3xl py-2 md:py-4">Sign In</h1>
 
-       <div className='space-y-7'>
+       <div className='space-y-5 md:space-y-7'>
         <input 
       {...register("email")}
-      className="py-3 px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#858585] "
+      className="py-2 px-3 md:py-3 md:px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#858585] "
       placeholder="Email Address"
       type="email" />
       {errors.email && (
-      <p className="text-red-500 text-sm">{errors.email.message}</p>
+      <p className="text-red-500 text-xs md:text-sm">{errors.email.message}</p>
       )}
 
       <input 
       {...register("password")}
-      className="py-3 px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#7c7c7c]  "
+      className="py-2 px-3 md:py-3 md:px-3 m-2 w-full bg-zinc-900 bg-opacity-50 backdrop-blur-sm outline-neutral-300 placeholder:text-[#c9c9c9] placeholder:text-xs  border-[0.1px] rounded-sm border-[#7c7c7c]  "
       placeholder="Password"
       type="password" />
        {errors.password && (
-      <p className="text-red-500 text-sm">{errors.password.message}</p>
+      <p className="text-red-500 text-xs md:text-sm">{errors.password.message}</p>
       )}
 
         {/* Firebase Authentication Errors */}
         {errorMessages && (
-          <p className="text-red-500 text-sm mt-4 text-center">
+          <p className="text-red-500 text-xs mt-4 text-center">
             {errorMessages}
           </p>
         )}
      
       <button 
-      className="py-2 m-2 bg-[#c11119] hover:bg-[#c1111ae5] w-full rounded-sm" 
+      className="py-1 md:py-2 m-2 md:text-sm bg-[#c11119] hover:bg-[#c1111ae5] w-full rounded-sm" 
       type="submit">
         Sign in
         </button>
-        <p className="text-sm font-thin py-4 px-3 cursor-pointer">New to Netflix? 
+        <p className="text-xs md:text-sm font-thin px-1 md:pb-4 md:px-3 cursor-pointer">New to Netflix? 
        <Link to={'/signup'} className="font-medium"> Sign up now.</Link></p>
 
        <button 

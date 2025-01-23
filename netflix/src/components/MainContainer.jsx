@@ -14,8 +14,10 @@ const MainContainer = () => {
   return (
     
    <>
+     <div className=' bg-black'> 
      <VideoTitle title={original_title} overview={overview} />
      <VideoBackground movieId={id}/>
+     </div>
     
    </>
   )

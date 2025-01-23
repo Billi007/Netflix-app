@@ -1,11 +1,11 @@
 
 const Footer = () => {
   return (
-    <div className='w-full text-stone-300 text-xs mt-[10%] bg-black opacity-80 '>
+    <div className='w-full text-stone-300 text-xs mt-[25%] md:mt-[10%] bg-black opacity-80 '>
     <p className="mx-10">Questions? Call <span className='decoration-slate-100 underline'>000-800-919-1743</span></p>
-    <div className='flex underline  decoration-slate-100 justify-evenly items-center mt-10 gap-3 mb-28 text-sm max-w-4xl m-auto '>
+    <div className='flex underline  decoration-slate-100 justify-evenly items-center md:px-0 px-5 mt-24 gap-3 mb-16 md:mb-28 text-sm max-w-4xl m-auto '>
 
-    <ul className='flex flex-col space-y-3 text-xs '>
+    <ul className='flex flex-col space-y-1 md:space-y-3 text-[11px] md:text-sm '>
    <a href="https://help.netflix.com/en/node/412">FAQ</a>
    <a href="https://ir.netflix.net/ir-overview/profile/default.aspx">Media Centre</a>
    <a href="https://help.netflix.com/legal/privacy">Ways to Watch</a>
@@ -15,7 +15,7 @@ const Footer = () => {
    
 
    
-    <ul className='flex flex-col space-y-3'>
+    <ul className='flex flex-col space-y-1 md:space-y-3 text-[11px] md:text-sm'>
    <a href="https://help.netflix.com/en">Help Centre</a>
    <a href="https://ir.netflix.net/ir-overview/profile/default.aspx">Investor Relations</a>
    <a href="https://help.netflix.com/legal/termsofuse">Terms of Use</a>
@@ -25,7 +25,7 @@ const Footer = () => {
   
 
    
-    <ul className='flex flex-col space-y-3'>
+    <ul className='flex flex-col space-y-1 md:space-y-3 text-[11px] md:text-sm'>
    <a href="https://www.netflix.com/login?nextpage=https%3A%2F%2Fwww.netflix.com%2Fyouraccount">Account</a>
    <a href="https://jobs.netflix.com/">Jobs</a>
    <a href="https://help.netflix.com/legal/privacy">Privacy</a>

@@ -15,16 +15,16 @@ const MovieList = ({ title, movies }) => {
   };
 
   return (
-    <div className="relative w-full px-4">
+    <div className="relative w-full px-5">
       {/* Heading */}
-      <h2 className="text-white text-xl font-normal ml-6 mb-2 mt-8">{title}</h2>
+      <h2 className="text-white text-sm md:text-xl font-normal ml-6 mb-2 mt-8">{title}</h2>
 
       {/* Carousel Container */}
       <div className="relative">
         {/* Left Arrow */}
         <button
           onClick={() => scroll("left")}
-          className="absolute text-3xl -left-5 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 rounded-full mx-2">
+          className="absolute text-lg md:text-3xl -left-5 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 rounded-full mx-2">
          <FaChevronLeft />
         </button>
 
@@ -45,7 +45,7 @@ const MovieList = ({ title, movies }) => {
         {/* Right Arrow */}
         <button
           onClick={() => scroll("right")}
-          className="absolute -right-5 text-3xl mx-2 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 rounded-full">
+          className="absolute -right-5 text-lg md:text-3xl mx-2 top-1/2 transform -translate-y-1/2 z-10 bg-black bg-opacity-50 text-white p-2 rounded-full">
          <FaChevronRight />
         </button>
       </div>
