@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* .Toastify__toast {
+    @apply min-h-[40px] p-2 text-sm ;
+  }
+  
+  .Toastify__toast-container {
+    @apply w-auto max-w-[300px];  } */

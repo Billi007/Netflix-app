@@ -36,7 +36,7 @@ const Signup = () => {
         .then(() => {
           const {uid, email, displayName} = auth.currentUser;
           dispatch(addUser({ uid ,email, displayName}))
-          toast.success('User added successfully')
+          toast.success('User signed up successfully')
           console.log("User created:", user)
         })
         .catch((error) => {
@@ -60,7 +60,7 @@ const Signup = () => {
    <Header/>
       <div className="absolute w-full ">
       <img 
-      className='relative h-screen w-full bg-cover bg-center'
+      className='relative h-screen object-cover w-full bg-cover bg-center'
       src={netflixBgImage}
       alt="img" />
        <div className="absolute inset-0 bg-black bg-opacity-60"></div>
@@ -110,7 +110,7 @@ const Signup = () => {
       <p 
       className="text-xs md:text-sm font-thin px-1 md:pb-4 md:px-3 cursor-pointer">
       Already a member? 
-     <Link to={'/signin'} className="font-medium"> Sign in.</Link></p>
+     <Link to={'/'} className="font-medium"> Sign in.</Link></p>
     </div>
     </form>
     </div>

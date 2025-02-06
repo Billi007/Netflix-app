@@ -20,7 +20,7 @@ function App() {
      <Route path='/signin' element={<Login/>} />
      <Route path='/signup' element={<Signup/>} />
      </Routes>
-     <ToastContainer position="bottom-right" />
+     <ToastContainer position="bottom-right"  />
      </BrowserRouter>
  
     </>
