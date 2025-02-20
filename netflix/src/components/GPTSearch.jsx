@@ -1,11 +1,12 @@
+
 import SearchBar from './SearchBar'
 
-
 const GPTSearch = () => {
+
   return (
-    <div className=' bg-black w-full h-screen flex items-center justify-center'>
+    <div className=' bg-black w-full flex-col h-screen flex items-center justify-center'>
       <SearchBar/>
-      
+      {/* <GptMovieSuggestion/> */}
     </div>
   )
 }

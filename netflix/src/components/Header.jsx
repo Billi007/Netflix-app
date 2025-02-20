@@ -1,13 +1,11 @@
 import logo from "../../public/netflix_logo.png";
 import netflixAvatar from "../../public/Netflix-avatar.png";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged  } from "firebase/auth";
 import { auth } from "../utils/Firebase";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IoIosSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../redux/userSlice";
 import { toggleGptSearchView } from "../redux/SearchSlice";
 import { supportedLanguage } from "../utils/Constants";
@@ -21,15 +19,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
-  const dispatch = useDispatch();
-
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
 
   const handleSignOut = () => {
     setIsModalOpen(false);
@@ -40,6 +33,11 @@ const Header = () => {
         navigate("/error");
       });
   };
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -120,7 +118,7 @@ const Header = () => {
 
                 {isOpen && (
                   <div
-                    className="origin-bottom-left absolute right-7 md:right-10 mt-[22%] md:mt-[13%] lg:mt-[8%] bg-gray-900 w-24 md:w-32 py-2 text-white
+                    className="origin-bottom-left absolute right-7 md:right-10 mt-[23%] md:mt-[13%] lg:mt-[8%] bg-gray-900 w-24 md:w-32 py-2 text-white
                     selection:shadow-lg ring-1 ring-black ring-opacity-5 rounded-sm
                     focus:outline-none"
                   >

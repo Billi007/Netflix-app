@@ -1,10 +1,13 @@
-import { useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { lang } from '../utils/LanguageConstants'
-import { useRef } from 'react';
+import { useRef} from 'react';
 
 const SearchBar = () => {
+
   const langKey = useSelector(store => store.config.lang);
   const searchText= useRef(null);
+
+
 
   
   return (
@@ -21,7 +24,10 @@ const SearchBar = () => {
         <button 
         className='md:py-[12px] py-1.5 px-2 text-[15px] font-light  md:px-6 text-white bg-red-800 hover:bg-opacity-90 rounded-r-sm'>{lang[langKey].search} </button>
       </form>
-    </div>
+
+  
+      
+    </div> 
   )
 }
 export default SearchBar
